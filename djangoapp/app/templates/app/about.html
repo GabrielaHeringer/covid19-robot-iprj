@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Sobre</title>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
+        <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'style.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'favicon96.png' %}" >
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../static/jquery.slim.min.js"><\/script>')</script><script src="../../static/bootstrap.bundle.js"></script>
+    </head>
+    <body>
+        <div class="row featurette">
+            <div class="container-fluid" align="center">
+                <img class="img-fluid" src="http://www.iprj.uerj.br/images/logoIprj.png">
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand name">IPRJ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample04">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:WebPostList' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:database' %}">Bases de Dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Ajuda</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid" style="background-color: #00466e">
+            <div class="row">
+                <main role="main" class="col-md-10 ml-sm-auto col-lg-12 px-md-6">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <div class="container-fluid" align="center" style="z-index: 10">
+                            <h1 class="display-3" style="color: #fff">Sobre</h1>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="col-lg-auto">
+                                <h3 align="center">O projeto</h3>
+                                <hr size = 7>
+                                <p class="lead">&ensp;&ensp; &ensp;A pandemia da Covid-19 encontrou o mundo despreparado para enfrentá-la, carente de recursos humanos e, especialmente, de soluções que pudessem evitar tão alto grau de contágio e de óbitos.  O coronavírus trouxe incertezas econômicas, políticas e demográficas, e se destacou em relação a todos os demais fenômenos que pareceriam marcar a nova década do século XXI (UEBEL, 2020). O Brasil, mais especificamente, está sendo profundamente afetado pela pandemia, com grande grau de contágio entre a população e índices de óbitos em crescente evolução (IPEA, 2020).</p>
+				<p class="lead">&ensp;&ensp; &ensp;Dentro desse cenário, urge a criação de soluções que possam, no menor prazo possível, minimizar os efeitos maléficos da pandemia. Entre essas soluções, apresenta-se a possibilidade da criação de ferramentas que possam facilitar a coleta e classificação de metadados de trabalhos científicos ou de relevância científica sobre a Covid-19. Essas ferramentas poderiam apoiar a pesquisa bibliográfica de pesquisadores, cidadãos e organizações públicas, privadas ou do terceiro setor, apoiando sua tomada de decisão e a definição de ações relacionadas à pandemia.</p>
+				<p class="lead">&ensp;&ensp; &ensp;O desenvolvimento de ferramentas de coleta e classificação de informações pode ser apoiada pela construção de web crawlers. Web crawlers são aplicações de software que, de forma sistematizada, vasculham a internet através de tarefas automatizadas (scripts) visando buscar e catalogar informações disponíveis na rede mundial de computadores. O termo web scraping, por sua vez, se refere à coleta de dados realizada por intermédio dos web crawlers, que executam a requisição de dados ao servidor das páginas acessadas, compilando esses dados de modo que a informação desejada possa ser extraída (MITCHELL, 2015).</p>
+				<p class="lead">&ensp;&ensp; &ensp;Nesse contexto, esse projeto tem como objetivo o desenvolvimento de web crawlers que busquem informações relevantes de descobertas e conhecimentos científicos referentes a artigos publicados em revistas médicas e matérias disponibilizadas na Web que abordem a doença Covid-19.  Ademais, busca-se a criação de um sistema de acesso livre aos metadados coletados e que disponibilize diferentes mecanismos de filtragem ao usuário, por intermédio do uso de strings de busca, a partir da escolha de diferentes atributos (assunto, título, resumo, autoria, período de publicação), de acordo com a demanda desejada.</p>
+                            </div>
+                        </div>
+                        <br>
+			<div class="card">
+                            <div class="col-lg-auto">
+                                <h3 align="center">Contato</h3>
+                                <hr size = 7>
+                                <p class="lead">Para entrar em contato: </p>
+                                <p class="lead">e-mail: projetorobocovid@gmail.com </p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        
+	<footer class="footer-class">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="custom">
+                            <div class="footer-example">
+                                <p>© Copyright 2020</p>
+				<p> Site hospedado na Cotplan/IPRJ/UERJ</p>
+                                <p><strong>Versão 0.13</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+
