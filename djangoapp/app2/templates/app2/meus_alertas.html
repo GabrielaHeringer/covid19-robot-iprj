@@ -1,0 +1,326 @@
+{% extends 'app2/base.html' %}
+{% block content %}
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand name" href="http://www.iprj.uerj.br/" target="_blank">IPRJ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app2:WebPostList2' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" href="{% url 'app2:database2' %}">Bases de Dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Ajuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app2:about2' %}">Sobre</a>
+                    </li>
+                </ul>
+            <div  class="login-area ml-auto mt-mb-2">
+                        <ul style="list-style: none;">
+                        <li class="nav-item dropdown" style="float: right;">
+                            <a class="nav-link dropdown-toggle" style="color: #fff;" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-user-lg"></i> {{ user.username }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                <a class="dropdown-item" href="{% url 'app2:perfil' %}">Perfil</a>
+                                <a class="dropdown-item active">Meus alertas</a>
+                                <a class="dropdown-item" href="{% url 'app2:criar_alerta' %}">Criar alerta</a>
+                                <a class="dropdown-item" href="{% url 'app2:logout' %}">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+            </div>
+        </nav>
+        <div class="container-fluid" style="background-color: #00466e; padding: 65px;">
+            <div class="container emp-profile" style="max-width: 1400px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% if alerta %}
+                                <div class="container emp-profile" style="max-width: 1400px; id="editar_alerta">
+                                    <div class="form-v10-content">
+                                        <div class="form-left">
+                                            <h2>Editar Alerta</h2>
+                                            <form class="form-detail" method="post"> {% csrf_token %}
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Nome</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="nome_alerta" placeholder="Digite um nome para seu alerta" required value="{{ alerta.nome }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Frequência</span>
+                                                        </div>
+                                                        <select class="custom-select" name="frequencia">
+                                                            <option selected value="Diário">Diário</option>
+                                                            <option value="Semanal">Semanal</option>
+                                                            <option value="Quinzenal">Quinzenal</option>
+                                                            <option value="Mensal">Mensal</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Busca Global</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="busca_global" placeholder="Filtrar em todos os campos" value="{{ alerta.busca_global }}"></td>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <select class="input-group-text" name="titulo_resumo" style="min-width:175px">
+                                                                {% if alerta.opcao_titulo_resumo == "titulo" %}
+                                                                    <option value="titulo" selected >Título</option>
+                                                                    <option value="resumo">Resumo</option>
+                                                                    <option value="tituloEresumo">Título e Resumo</option>
+                                                                    <option value="tituloOUresumo">Título ou Resumo</option>
+                                                                {% elif alerta.opcao_titulo_resumo == "resumo" %}
+                                                                    <option value="titulo">Título</option>
+                                                                    <option value="resumo" selected>Resumo</option>
+                                                                    <option value="tituloEresumo">Título e Resumo</option>
+                                                                    <option value="tituloOUresumo">Título ou Resumo</option>
+                                                                {% elif alerta.opcao_titulo_resumo == "tituloEresumo" %}
+                                                                    <option value="titulo">Título</option>
+                                                                    <option value="resumo">Resumo</option>
+                                                                    <option value="tituloEresumo" selected>Título e Resumo</option>
+                                                                    <option value="tituloOUresumo">Título ou Resumo</option>
+                                                                {% else %}
+                                                                    <option value="titulo">Título</option>
+                                                                    <option value="resumo">Resumo</option>
+                                                                    <option value="tituloEresumo">Título e Resumo</option>
+                                                                    <option value="tituloOUresumo" selected>Título ou Resumo</option>
+                                                                {% endif %}
+                                                            </select>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="titulo_e_resumo" placeholder="Filtrar por título e/ou resumo" value="{{ alerta.titulo_e_resumo }}">
+                                                        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width: 100%">
+                                                            {% if alerta.button_titulo_e_resumo == "tt" %}
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoTituloResumo" value="tt" autocomplete="off" checked> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="qt" autocomplete="off"> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="nt" autocomplete="off"> Nenhum dos termos
+                                                                </label>
+                                                            {% elif alerta.button_titulo_e_resumo == "qt" %}
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="tt" autocomplete="off"> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoTituloResumo" value="qt" autocomplete="off" checked> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="nt" autocomplete="off"> Nenhum dos termos
+                                                                </label>
+                                                            {% else %}
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="tt" autocomplete="off"> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoTituloResumo" value="qt" autocomplete="off"> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoTituloResumo" value="nt" autocomplete="off" checked> Nenhum dos termos
+                                                                </label>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Autores</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="autor" placeholder="Filtrar por autor" value="{{ alerta.autor }}">
+                                                        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width: 100%">
+                                                            {% if alerta.button_autores == "tt" %}
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoAutores" value="tt" autocomplete="off" checked> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="qt" autocomplete="off"> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="nt" autocomplete="off"> Nenhum dos termos
+                                                                </label>
+                                                            {% elif alerta.button_autores == "qt" %}
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="tt" autocomplete="off"> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoAutores" value="qt" autocomplete="off" checked> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="nt" autocomplete="off"> Nenhum dos termos
+                                                                </label>
+                                                            {% else %}
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="tt" autocomplete="off"> Todos os termos
+                                                                </label>
+                                                                <label class="btn btn-secondary">
+                                                                    <input type="radio" name="tipoAutores" value="qt" autocomplete="off"> Qualquer termo
+                                                                </label>
+                                                                <label class="btn btn-secondary active">
+                                                                    <input type="radio" name="tipoAutores" value="nt" autocomplete="off" checked> Nenhum dos termos
+                                                                </label>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Idioma</span>
+                                                        </div>
+                                                        <select class="custom-select" name="idiomas">
+                                                            {% if alerta.idiomas == "en" %}
+                                                                <option value="">Filtrar por idioma</option>
+                                                                <option value="en" selected>en</option>
+                                                                <option value="es">es</option>
+                                                                <option value="pt">pt</option>
+                                                            {% elif alerta.idiomas == "es" %}
+                                                                <option value="">Filtrar por idioma</option>
+                                                                <option value="en">en</option>
+                                                                <option value="es" selected>es</option>
+                                                                <option value="pt">pt</option>
+                                                            {% elif alerta.idiomas == "pt" %}
+                                                                <option value="">Filtrar por idioma</option>
+                                                                <option value="en">en</option>
+                                                                <option value="es">es</option>
+                                                                <option value="pt" selected>pt</option>
+                                                            {% else %}
+                                                                <option selected value="">Filtrar por idioma</option>
+                                                                <option value="en">en</option>
+                                                                <option value="es">es</option>
+                                                                <option value="pt">pt</option>
+                                                            {% endif %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                {% if messages %}
+                                                    {% for message in messages %}
+                                                        <div class="erroralerta">{{ message }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                <div class="form-row" style="justify-content: center;">
+                                                    <button class="btn btn-primary" id="btnSalvar" style="margin-bottom: 30px; margin-right: 5px;" type="submit">Salvar</button>
+                                                    <a href="{% url 'app2:meus_alertas' %}"><button class="btn btn-primary" type="button" id="btnCancelar" style="margin-bottom: 30px; margin-left: 5px;">Cancelar</button></a>
+                                                </div>
+                                            </form>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="profile-head">
+                                            <h5>
+                                                {{ user.first_name }}
+                                                {{ user.last_name }}
+                                            </h5>
+                                            <h6>
+                                                {{ profile.profissao }}
+                                            </h6>
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="alerta-tab" data-toggle="tab" href="#alerta" role="tab" aria-controls="alerta" aria-selected="true">Meus Alertas</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="alerta" role="tabpanel" aria-labelledby="alerta-tab">
+                                        <div class="row">
+                                                <table class="table table-sm col-md-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Alerta</th>
+                                                            <th scope="col">Período</th>
+                                                            <th scope="col">Assunto</th>
+                                                            <th scope="col">Data da Última Edição</th>
+                                                            <th scope="col">Data do Último Envio</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for alerta in alertas %}
+                                                        <tr>
+                                                            <th scope="row">{{ forloop.counter }}</th>
+                                                            <td>{{ alerta.nome }}</td>
+                                                            <td>{{ alerta.frequencia }}</td>
+                                                            <td>
+                                                                {% if alerta.busca_global %}
+                                                                    Busca Global: {{ alerta.busca_global }}<br>
+                                                                {% endif %}
+                                                                {% if alerta.titulo_e_resumo %}
+                                                                    {% if alerta.button_titulo_e_resumo == "tt" %}
+                                                                        Todos os termos 
+                                                                    {% elif alerta.button_titulo_e_resumo == "qt" %}
+                                                                        Qualquer termo 
+                                                                    {% else %}
+                                                                        Nenhum termo 
+                                                                    {% endif %}
+                                                                    {% if alerta.opcao_titulo_resumo == "tituloEresumo" %}
+                                                                        em título e resumo: {{ alerta.titulo_e_resumo }}<br>
+                                                                    {% elif alerta.opcao_titulo_resumo == "tituloOUresumo" %}
+                                                                        em título ou resumo: {{ alerta.titulo_e_resumo }}<br>
+                                                                    {% elif alerta.opcao_titulo_resumo == "titulo" %}
+                                                                        em título: {{ alerta.titulo_e_resumo }}<br>
+                                                                    {% else %}
+                                                                        em {{ alerta.opcao_titulo_resumo}}: {{ alerta.titulo_e_resumo }}<br>
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                                {% if alerta.autor %}
+                                                                    {% if alerta.button_autores == "tt" %}
+                                                                        Todos os termos em autores: {{ alerta.autor }}<br>
+                                                                    {% elif alerta.button_autores == "qt" %}
+                                                                        Qualquer termo em autores: {{ alerta.autor }}<br>
+                                                                    {% else %}
+                                                                        Nenhum termo em autores: {{ alerta.autor }}<br>
+                                                                    {% endif %} 
+                                                                {% endif %}
+                                                                {% if alerta.idiomas %}
+                                                                    Idioma: {{ alerta.idiomas }}<br>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>{% if alerta.criadoEm %}
+                                                                    {{ alerta.criadoEm }}
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>{% if alerta.dataUltimoEnvio %}
+                                                                    {{ alerta.dataUltimoEnvio }}
+                                                                {% endif %}
+                                                            </td>
+                                                            <td style="vertical-align: middle;">
+                                                                <a style="margin-right: 10px;" href="/cadastro/excluir/{{ alerta.id }}/"><button type="button" class="btn btn-danger">EXCLUIR</button></a>
+                                                                <a href="/cadastro/editar-alerta/{{ alerta.id }}/"><button type="button" id="btnEditar" class="btn btn-primary">EDITAR</button></a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <a style="margin: auto;" href="{% url 'app2:criar_alerta' %}"><button type="button" style="padding: 5px 50px;" class="btn btn-primary">ADICIONAR ALERTA</button></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+{% endblock %}

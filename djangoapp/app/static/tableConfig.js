@@ -284,7 +284,6 @@ $(document).ready(function() {
 		d.columns[6].search.value = $('#data_minA').val();
                 d.extra_value2 = $('#data_maxA').val();
                 d.radio_autores = $("input[name='tipoAutores']:checked").val();
-
             }
         },
         "columns": [{
@@ -321,7 +320,7 @@ $(document).ready(function() {
 	    { "data": "resumo", "visible": false},
         ],
         "order": [[6, "desc"]],
-        "autoWidth": false,
+        "autoWidth": true,
         "columnDefs": [
                 { "width": "2%", "targets": 0 },
                 { "width": "6%", "targets": 6 },

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        
+	<!-- Data Tables -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+        
+	<!--DataTables Bootstrap-->
+	<script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
+
+	<title>COVID-19 Search - IPRJ</title>
+        
+	<!-- Locais -->
+	<script src="{% static 'tableConfig2.js' %}"></script>
+        <link href="{% static 'bootstrap2.css' %}" rel="stylesheet">
+        <link href="{% static 'style2.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'favicon96.png' %}" >
+
+	<!-- Bootsptrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+        <script>window.jQuery || document.write('<script src="../../static/jquery.slim.min.js"><\/script>')</script><script src="../../static/bootstrap.bundle.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+
+    </head>
+    <body>
+        <div class="row featurette">
+            <div class="container-fluid" align="center">
+                <img class="img-fluid" src="http://www.iprj.uerj.br/images/logoIprj.png">
+            </div>
+        </div>
+        {% block content  %}
+	{% endblock %}   
+        <footer class="footer-class">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="custom">
+                            <div class="footer-example">
+                                <p>© Copyright 2020</p>
+				<p> Site hospedado na Cotplan/IPRJ/UERJ</p>
+                                <p><strong>Versão 0.13</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+

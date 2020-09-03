@@ -1,0 +1,142 @@
+{% extends 'app2/base.html' %}
+{% block content %}
+	   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand name" href="http://www.iprj.uerj.br/" target="_blank">IPRJ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app2:WebPostList2' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" href="{% url 'app2:database2' %}">Bases de Dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Ajuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app2:about2' %}">Sobre</a>
+                    </li>
+                </ul>
+            <div  class="login-area ml-auto mt-mb-2">
+                        <ul style="list-style: none;">
+                        <li class="nav-item dropdown" style="float: right;">
+                            <a class="nav-link dropdown-toggle" style="color: #fff;" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-user-lg"></i> {{ user.username }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                <a class="dropdown-item" href="{% url 'app2:perfil' %}">Perfil</a>
+                                <a class="dropdown-item" href="{% url 'app2:meus_alertas' %}">Meus alertas</a>
+                                <a class="dropdown-item active">Criar alerta</a>
+                                <a class="dropdown-item" href="{% url 'app2:logout' %}">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+            </div>
+        </nav>
+       <div class="container-fluid" style="background-color: #00466e; padding: 65px;">
+            <div class="form-v10-content">
+                    <div class="form-left">
+                        <h2>Criar Alerta</h2>
+                        <form class="form-detail" method="post"> {% csrf_token %}
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Nome</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="nome_alerta" placeholder="Digite um nome para seu alerta" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Frequência</span>
+                                    </div>
+                                    <select class="custom-select" name="frequencia">
+                                        <option selected value="Diário">Diário</option>
+                                        <option value="Semanal">Semanal</option>
+                                        <option value="Quinzenal">Quinzenal</option>
+                                        <option value="Mensal">Mensal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Busca Global</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="busca_global" placeholder="Filtrar em todos os campos"></td>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <select class="input-group-text" name="titulo_resumo" style="min-width:175px">
+                                            <option value="titulo" selected >Título</option>
+                                            <option value="resumo">Resumo</option>
+                                            <option value="tituloEresumo">Título e Resumo</option>
+                                            <option value="tituloOUresumo">Título ou Resumo</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" class="form-control" name="titulo_e_resumo" placeholder="Filtrar por título e/ou resumo">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width: 100%">
+                                        <label class="btn btn-secondary active">
+                                            <input type="radio" name="tipoTituloResumo" value="tt" autocomplete="off" checked> Todos os termos
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="tipoTituloResumo" value="qt" autocomplete="off"> Qualquer termo
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="tipoTituloResumo" value="nt" autocomplete="off"> Nenhum dos termos
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Autores</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="autor" placeholder="Filtrar por autor">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width: 100%">
+                                        <label class="btn btn-secondary active">
+                                            <input type="radio" name="tipoAutores" value="tt" autocomplete="off" checked> Todos os termos
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="tipoAutores" value="qt" autocomplete="off"> Qualquer termo
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="tipoAutores" value="nt" autocomplete="off"> Nenhum dos termos
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="min-width:175px">Idioma</span>
+                                    </div>
+                                    <select class="custom-select" name="idiomas">
+                                        <option selected value="">Filtrar por idioma</option>
+                                        <option value="en">en</option>
+                                        <option value="es">es</option>
+                                        <option value="pt">pt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="erroralerta">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="form-row" style="justify-content: center;">
+                                <button class="btn btn-primary buttons" id="btnCriar" style="margin-bottom: 30px; margin-right: 5px;" type="submit">Criar</button>
+                                <button class="btn btn-primary buttons" id="btnLimpar" style="margin-bottom: 30px; margin-left: 5px;" type="reset">Limpar</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+{% endblock %}
