@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -23,9 +22,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(k&0a(0!js(#d1*=e-wpm4-b43+p25&ow@fh5=pq_edn7^y9g)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'projetorobocovid@gmail.com'
+EMAIL_HOST_PASSWORD = 'noucqdtidcgfqvap'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'COVID-19 News IPRJ Team <noreply@covid19newsIPRJ.com>'
 
 
 # Application definition
@@ -37,8 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     'app.apps.AppConfig',
+    'app2.apps2.AppConfig2',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +91,13 @@ DATABASES = {
         'OPTIONS': {
             'read_default_file': '/etc/my.cnf',
         },
-    }
+    },
+    'replica1': {
+        'NAME': 'django_data2',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'djangouser',
+        'PASSWORD': 'CovidProject', 	
+    },
 }
 
 
@@ -107,15 +123,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -127,4 +143,6 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
-DATE_FORMAT = '%Y/%m/%d'
+DATE_FORMAT = '%d/%m/%Y'
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']

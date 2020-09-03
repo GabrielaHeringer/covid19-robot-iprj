@@ -1,0 +1,146 @@
+{% extends 'app2/base.html'  %}
+{% block content %}
+       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand name" href="http://www.iprj.uerj.br/" target="_blank">IPRJ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample04">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{% url 'app2:WebPostList2' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app2:database2' %}">Bases de Dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Ajuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{% url 'app2:about2' %}">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+       </nav>
+       <div class="register">
+            <div class="row">
+                <div class="col-md-3 register-left">
+                    <img src="../../static/favicon96.png"/>
+                    <h3>Bem-vindo(a)</h3>
+                    <p class="lead">Crie sua conta e tenha acesso a novas funcionalidades!</p>
+                </div>
+                <div class="col-md-9 register-right">
+                    <div class="tab-content" id="myTabContent">
+			<form method="post">{% csrf_token %}
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h2 class="register-heading">Criar conta</h2>
+                            <h6 class="register-head"><h11>*</h11> Campo Obrigatório </h6>
+                            <div class="row register-form">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Nome<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Usuário<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.username }}
+                                        </div>
+					{% if user_form.username.errors %}
+                                            <div class="errorlist">Nome de usuário já existe.</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Telefone</p>
+                                            </div>
+                                            {{ profile_form.telefone }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Profissão<h11>*</h11></p>
+                                            </div>
+                                            {{ profile_form.profissao }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Senha<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.password }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Sobrenome<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.last_name }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">E-mail<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.email }}
+                                        </div>
+					{% if messages %}
+                                            {% for message in messages %}
+                                                 <div class="errorlist">{{ message }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Instituição/Empresa</p>
+                                            </div>
+                                            {{ profile_form.organizacao }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">País</p>
+                                            </div>
+                                            {{ profile_form.pais }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <p class="input-group-text" id="inputGroup-sizing-default" style="width: 175px">Confirmar senha<h11>*</h11></p>
+                                            </div>
+                                            {{ user_form.confirm_password }}
+                                        </div>
+                                    </div>
+                                </div>
+				{{ user_form.non_field_errors }}
+				<button id="Cadastrar" name="Cadastrar" style="margin:auto;" class="buttons btn btn-primary" type="submit">Cadastrar</button>
+                            </div>
+			    <div>
+			    	<div class="d-flex justify-content-center links">
+                                        Já possui conta? <a href="{% url 'app2:submit_login' %}"class="ml-2">Login.</a>
+                            	</div>
+			    </div>
+                        </div>
+                    </div>
+		   </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

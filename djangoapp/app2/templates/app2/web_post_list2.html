@@ -1,59 +1,52 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-        <title>COVID-19 Search - IPRJ</title>
-        <script src="{% static 'tableConfig.js' %}"></script>
-        <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
-        <link href="{% static 'style.css' %}" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
-        <link rel="shortcut icon" href="{% static 'favicon96.png' %}" >
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-        <script>window.jQuery || document.write('<script src="../../static/jquery.slim.min.js"><\/script>')</script><script src="../../static/bootstrap.bundle.js"></script>
-    </head>
-    <body>
-        <div class="row featurette">
-            <div class="container-fluid" align="center">
-                <img class="img-fluid" src="http://www.iprj.uerj.br/images/logoIprj.png">
-            </div>
-        </div>
+{% extends 'app2/base.html' %}
+{% block content %}
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand name" href="http://www.iprj.uerj.br/" target="_blank">IPRJ</a>
+	    <a class="navbar-brand name" href="http://www.iprj.uerj.br/" target="_blank">IPRJ</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample04">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav ml-auto">
+                    <li  class="nav-item active">
                         <a class="nav-link">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'app:database' %}">Bases de Dados</a>
+                        <a class="nav-link text-nowrap" href="{% url 'app2:database2' %}">Bases de Dados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link">Ajuda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'app:about' %}">Sobre</a>
+                        <a class="nav-link" href="{% url 'app2:about2' %}">Sobre</a>
                     </li>
                 </ul>
-            </div>
+	    <div  class="login-area ml-auto mt-mb-2">
+		{% if user.is_authenticated %}
+			<ul style="list-style: none;">
+                        <li class="nav-item dropdown" style="float: right;">
+                            <a class="nav-link dropdown-toggle" style="color: #fff;" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-user-lg"></i> {{ user.username }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                <a class="dropdown-item" href="{% url 'app2:perfil' %}">Perfil</a>
+                                <a class="dropdown-item" href="{% url 'app2:meus_alertas' %}">Meus Alertas</a>
+				<a class="dropdown-item" href="{% url 'app2:criar_alerta' %}">Criar alerta</a>
+                                <a class="dropdown-item" href="{% url 'app2:logout' %}">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                {% else %}
+			<a class="login-link text-nowrap" href="{% url 'app2:submit_login' %}">Faça seu login!</a><br>
+			<a class="register-link text-nowrap" href="{% url 'app2:register' %}">Não tem uma conta? Cadastre-se!</a>
+		{% endif %}
+	    </div>
+  	    </div>
         </nav>
         <div class="container-fluid" style="background-color: #00466e;">
             <div class="row">
                 <main role="main" class="coluna ml-sm-auto px-md-6">
                     <div class="image-responsive background" style="background-image: url(../../static/coronavirus1.jpg); border-radius: 20px;">
 			<div class="row-image" align="center">
-                            <h1 class="title display-4 font-weight-normal covid-banner"><span>COVID-19 Search</span></h1>
+                            <h1 class="title font-weight-normal covid-banner"><span>COVID-19 Search</span></h1>
                             <p class="subtitle lead font-weight-normal covid-big"><span>Instituto Politécnico do Rio de Janeiro</span></p>
                         </div>
                     </div>
@@ -61,7 +54,7 @@
                         <h4 align="center" id="buscaAvancada" style="display: none">Busca Avançada</h4>
                         <table id="pesquisa" class="table">
                             <tbody>
-                                <form>
+                                <form method="get">
 				<tr id = "linha_buscaGlobal">
                                     <td>
                                     <div class="input-group mb-3">
@@ -210,7 +203,7 @@
 		    </div>
                     <div class="row-table">
                         <div class="container-fluid">
-                            <table id="example" class="table table-striped row-border hover">
+                            <table id="example" class="table responsive table-striped row-bordered hover" width="100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -233,21 +226,4 @@
                 </main>
             </div>
         </div>
-        <footer class="footer-class">
-            <div class="container">
-                <div class="row">
-                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="custom">
-                            <div class="footer-example">
-                                <p>© Copyright 2020</p>
-				<p> Site hospedado na Cotplan/IPRJ/UERJ</p>
-                                <p><strong>Versão 0.13</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
-
+{% endblock %}

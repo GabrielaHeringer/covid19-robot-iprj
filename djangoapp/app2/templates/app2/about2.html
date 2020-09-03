@@ -1,35 +1,18 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <title>Sobre</title>
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
-        <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
-        <link href="{% static 'style.css' %}" rel="stylesheet">
-        <link rel="shortcut icon" href="{% static 'favicon96.png' %}" >
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../../static/jquery.slim.min.js"><\/script>')</script><script src="../../static/bootstrap.bundle.js"></script>
-    </head>
-    <body>
-        <div class="row featurette">
-            <div class="container-fluid" align="center">
-                <img class="img-fluid" src="http://www.iprj.uerj.br/images/logoIprj.png">
-            </div>
-        </div>
+{% extends 'app2/base.html' %}
+{% block content %}
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand name">IPRJ</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample04">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'app:WebPostList' %}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'app2:WebPostList2' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'app:database' %}">Bases de Dados</a>
+                        <a class="nav-link" href="{% url 'app2:database2' %}">Bases de Dados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Ajuda</a>
@@ -38,6 +21,28 @@
                         <a class="nav-link">Sobre</a>
                     </li>
                 </ul>
+	     	<div  class="login-area ml-auto mt-mb-2">
+                {% if user.is_authenticated %}
+                        <ul style="list-style: none;">
+                        <li class="nav-item dropdown" style="float: right;">
+                            <a class="nav-link dropdown-toggle" style="color: #fff;" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-user-lg"></i> {{ user.username }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                <a class="dropdown-item" href="{% url 'app2:perfil' %}">Perfil</a>
+                                <a class="dropdown-item" href="#">Criar alertas</a>
+                                <a class="dropdown-item" href="#">Consultar alertas</a>
+                                <a class="dropdown-item" href="#">Editar alertas</a>
+                                <a class="dropdown-item" href="#">Excluir alertas</a>
+                                <a class="dropdown-item" href="{% url 'app2:logout' %}">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                {% else %}
+                        <a class="login-link text-nowrap" href="{% url 'app2:submit_login' %}">Faça seu login!</a><br>
+                        <a class="register-link text-nowrap" href="{% url 'app2:register' %}">Não tem uma conta? Cadastre-se!</a>
+                {% endif %}
+            </div>
+            </div>
+
             </div>
         </nav>
         <div class="container-fluid" style="background-color: #00466e">
@@ -61,7 +66,7 @@
                             </div>
                         </div>
                         <br>
-                        <br>
+			<br>
                         <div class="card">
                             <div class="col-lg-auto">
                                 <h3 align="center">Público alvo</h3>
@@ -109,22 +114,4 @@
                 </main>
             </div>
         </div>
-        
-	<footer class="footer-class">
-            <div class="container">
-                <div class="row">
-                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="custom">
-                            <div class="footer-example">
-                                <p>© Copyright 2020</p>
-				<p> Site hospedado na Cotplan/IPRJ/UERJ</p>
-                                <p><strong>Versão 0.13</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
-
+{% endblock %}       

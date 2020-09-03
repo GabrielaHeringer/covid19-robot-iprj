@@ -1,0 +1,473 @@
+{% extends 'app2/base.html' %}
+{% block content %}
+       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand name">IPRJ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:WebPostList' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link">Assuntos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:database' %}">Bases de Dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Ajuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{% url 'app:about' %}">Sobre</a>
+                    </li>
+                </ul>
+	     <div  class="login-area ml-auto mt-mb-2">
+                <a class="login-link text-nowrap" href="{% url 'app2:submit_login' %}">Faça seu login!</a><br>
+                <a class="register-link text-nowrap" href="{% url 'app2:register' %}">Não tem uma conta? Cadastre-se!</a>
+            </div>
+            </div>
+        </nav>
+        <div class="container-fluid" style="background-color: #00466e">
+           <div class="row">
+                <main role="main" class="col-md-10 ml-sm-auto col-lg-12 px-md-6">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <div class="container-fluid" align="center" style="z-index: 10; color: #fff;">
+                            <h1 class="display-3">Assuntos</h1>
+                            <p style="color: #fff">Os artigos, notícias e estudos são classificados de acordo com o assunto abordado. Utilize o filtro para buscar um determinado assunto.</p>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2 align="center">COVID-19</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm qualquer menção de "Coronavirus Disease 2019", "SARS Coronavirus 2", "COVID-19", "SARS-CoV-2" ou "2019-m-CoV" ou quaisquer termos descendentes de "Coronavirus".</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2 align="center">Treatment</h2>
+                                        <hr size = 7>
+                                        <p>Este é um assunto amplo para qualquer artigo que esteja potencialmente em tratamento para o COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 drug repurposing</h2>
+                                        <hr size = 7>
+                                        <p>Este assunto contêm os resultados mais amplos de pesquisa para COVID-19 e esforços contínuos de reaproveitamento de medicamentos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and mechanical ventilation</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e ventilação ou ventilação mecânica.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and chloroquine</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm todos os sinônimos de "COVID-19", "chloroquine", bem como qualquer marca ou nome genérico de cloroquina ou hidroxicloroquina.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and antiviral treatments</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm todos os sinônimos de "COVID-19" e também incluem quaisquer termos sobre tratamentos "antivirais", incluindo antivirais gerais e específicos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and the ACE2 gene</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre o COVID-19 e o receptor do gene ACE2.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and NSAIDs</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e AINEs, incluindo a classe de AINEs e medicamentos específicos para AINEs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and remdesivir</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e qualquer termo genérico para remdesivir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Treatment: COVID-19 and plasma</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos em pacientes com COVID-19 e protéina plasmática.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Prevention</h2>
+                                        <hr size = 7>
+                                        <p>Este é um assunto amplo para qualquer artigo que COVID-19 e sinônimo de prevenção em qualquer parte dos artigos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Prevention: COVID-19 and vaccines</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e vacinas, incluindo a classe geral de vacinas e vacinas específicas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Prevention: Social distancing and transmission during pandemics or epidemics</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados desse assunto contêm artigos e estudos sobre "social distancing" ou "social distance" em pandemias ou epidemias.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Prevention: Viruses and face masks</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados desse assunto incluem estudos e artigos sobre qualquer vírus (incluindo o COVID-19) e o uso de respiradores ou máscaras.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Prevention: Viruses and handwashing</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre qualquer vírus (incluindo o COVID-19) e a prática de lavar as mãos ou higienizar as mãos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology</h2>
+                                        <hr size = 7>
+                                        <p>Este é um assunto amplo para qualquer estudo ou artigo focado na epidemiologia do COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: Contact tracing in viruses</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre vários tipos de vírus e rastreamento de contatos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: COVID-19 transmission and/or spread</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e transmissão ou disseminação.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: COVID-19 daily report - United States</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 nos Estados Unidos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: COVID-19 and surfaces</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e transmissão ou propagação em vários tipos de superfície.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: COVID-19 and climate effect</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e variabilidade sazonal, climas e condições climáticas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Epidemiology: COVID-19 and asymptomatic patients</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e pacientes assintomáticos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis</h2>
+                                        <hr size = 7>
+                                        <p>Este é um assunto amplo para qualquer estudo ou artigo sobre COVID-19 e sinônimos para diagnóstico.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis: COVID-19 and radiology imaging</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e radiologia diagnóstica, bem como tipos específicos de radiologia diagnóstica.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis: COVID-19 symptoms</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e vários sintomas que os pacientes apresentam.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis: COVID-19 and diagnostic testing</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e vários testes de diagnóstico, incluindo PCR.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis: COVID-19 and diagnostic accuracy</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre o COVID-19 e a precisão do diagnóstico, incluindo positivos e negativos verdadeiros e falsos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Diagnosis: COVID-19 and clinical characteristics</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre o COVID-19 e as características clínicas da doença.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk and Prognosis</h2>
+                                        <hr size = 7>
+                                        <p>Este é um assunto amplo para qualquer estudo focado no risco e prognóstico do COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 risk (narrow)</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre o COVID-19 e vários riscos ou fatores de risco.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 prognosis (narrow)</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e prognóstico.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and incubation period</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e período de incubação.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 in black and hispanic communities in the United States</h2>
+                                        <hr size = 7>
+                                        <p>Este assunto amplo inclui resultados em comunidades negras e hispânicas e COVID-19 nos Estados Unidos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and immunity</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e imunidade.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and mortality</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre COVID-19 e mortalidade.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: Non-COVID-19 related deaths, cancer</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados desse assunto contêm artigos e estudos sobre mortalidade em pacientes com câncer durante a pandemia de COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and pregnancy</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e gravidez.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and hospitalization</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e hospitalização.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and recovery</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e recuperação.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Risk/Prognosis: COVID-19 and blood type</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre pacientes com COVID-19 e tipo sanguíneo ou grupo sanguíneo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Pathophysiology</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos focados no COVID-19 e na fisiopatologia.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>Pathophysiology: Natural history of coronavirus</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados desse assunto incluem estudos e artigos sobre a história natural ou o curso clínico do coronavírus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>General: Economic impact of COVID-19</h2>
+                                        <hr size = 7>
+                                        <p>Os resultados deste assunto contêm artigos e estudos sobre a economia e o impacto econômico do COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="subject-container">
+                                        <h2>General: Broad, macro COVID-19 search</h2>
+                                        <hr size = 7>
+                                        <p>Este assunto contém o escopo mais amplo da literatura sobre COVID-19.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+{% endblock %}
